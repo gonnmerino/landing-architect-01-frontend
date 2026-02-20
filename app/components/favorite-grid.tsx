@@ -1,4 +1,3 @@
-import Link from "next/link";
 import type { FavoriteProject } from "../types/favorite";
 import FeaturedImageGrid from "../layouts/FeaturedImageGrid";
 

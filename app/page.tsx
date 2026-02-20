@@ -6,6 +6,9 @@ import { ServicesType } from "./types/services";
 import Services from "./components/services";
 import Process from "./components/process";
 import { getCarousel, getFavorite, getServices } from "./libs/strapi/projects";
+import { WorkInProgress } from "./components/navbar";
+import ViewProjectsButton from "./components/viewproject-btn";
+import ConsultButton from "./components/consult-button";
 
 export default async function Home() {
 
@@ -14,7 +17,6 @@ export default async function Home() {
     getFavorite(),
     getServices(),
   ])
-
   const slides: ImageSlide[] = carouselRaw.flatMap((project: any) =>
     (project.Image ?? [])
       .filter((img: any) => img.ShowInCarousel === true)
@@ -23,7 +25,7 @@ export default async function Home() {
         slug: project.slug,
         ImageDescription: img.Description,
         DateOfProject: project.DateOfProject,
-        imageUrl: `${process.env.NEXT_PUBLIC_BACKEND_URL}${img.Image.url}`,
+        imageUrl: img.Image!.url,
       }))
   );
 
@@ -31,19 +33,15 @@ export default async function Home() {
     .slice(0, 3)
     .map((project: any) => {
       const imgObj =
-        project.Image?.find((img: any) => img?.Description && img?.Image?.url) ||
-        project.Image?.find((img: any) => img?.Image?.url) ||
-        null;
-
+        project.Image?.find((img: any) => img.Image?.url) || null;
+      console.log("imgObj:" + imgObj, "project.Image?.find((img: any) => img.Image?.url: " + project.Image?.find((img: any) => img.Image?.url) || null);
       return {
         id: project.id,
         title: project.ProjectName,
         slug: project.slug,
         description: project.Description,
         year: project.DateOfProject ?? null,
-        imageUrl: imgObj?.Image?.url
-          ? `${process.env.NEXT_PUBLIC_BACKEND_URL}${imgObj.Image.url}`
-          : null,
+        imageUrl: imgObj?.Image?.url ?? '/fallback.jpg',
       };
     });
 
@@ -102,11 +100,7 @@ export default async function Home() {
                 Diseñamos espacios que integran materia, luz y entorno,
                 creando experiencias habitables con identidad y carácter.
               </p>
-              <button
-                className="mt-8 md:mt-12 border border-[#b46a3c] bg-[#b46a3c] text-white px-7 md:px-9 py-2.5 md:py-3 text-sm md:text-lg tracking-wide font-light w-fit hover:bg-[#f4f1ed] hover:text-[#b46a3c] transition-colors duration-300 cursor-pointer">
-                Ver proyectos
-              </button>
-
+              <ViewProjectsButton />
             </div>
 
             {/* DERECHA */}
@@ -144,19 +138,7 @@ export default async function Home() {
         <Services services={services} />
         <Process />
       </main>
-      <div className="w-full h-70 relative overflow-hidden">
-        <img
-          className="w-full h-full object-cover object-[50%_85%]"
-          src="/images/bg-prefooter.jpg"
-          alt="" />
-        <button
-          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2
-               border border-[#b46a3c] bg-[#b46a3c] text-white px-7 md:px-9 py-2.5 md:py-3
-               text-sm md:text-lg tracking-wide font-light w-fit
-               hover:bg-[#f4f1ed] hover:text-[#b46a3c] transition-colors duration-300 cursor-pointer">
-          Consultar!
-        </button>
-      </div>
+      <ConsultButton />
     </>
   );
 }

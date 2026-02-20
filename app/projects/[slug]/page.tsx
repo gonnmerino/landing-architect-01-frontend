@@ -35,7 +35,7 @@ export default async function ProjectPage({ params }: PageProps) {
   }
 
   const items = project.Image.slice(0, 3).map((img: any) => ({
-    imageUrl: `${process.env.NEXT_PUBLIC_BACKEND_URL}${img.Image.url}`,
+    imageUrl: img.Image?.url,
     alt: project.ProjectName,
   }));
 
@@ -55,7 +55,7 @@ export default async function ProjectPage({ params }: PageProps) {
       <main className="relative min-h-screen flex flex-col pt-24 md:pt-28 bg-[#f4f1ed/40]">
         <div className="w-full h-105 relative overflow-hidden">
           <img
-            src={`${process.env.NEXT_PUBLIC_BACKEND_URL}${project.Image[0]?.Image.url}`}
+            src={project.Image[0]?.Image?.url || '/fallback.jpg'}
             alt=""
             className="w-full h-full object-cover object-bottom"
           />
