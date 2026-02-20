@@ -52,7 +52,7 @@ const Footer = ({ contact }: FooterProps) => {
               Contacto
             </h5>
             <ul className="space-y-3 text-sm select-none text-neutral-600">
-              <li>{contact?.Name || "No Disponible" + " " + contact.LastName}</li>
+              <li>{contact.Name + " " + contact.LastName}</li>
               <li>{contact.Email}</li>
               <li>{contact.PhoneNumber}</li>
               <li>Patagonia, Argentina</li>
