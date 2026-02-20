@@ -1,6 +1,6 @@
 export type ContactData = {
   id: number;
-  Name: string;
+  Name?: string;
   LastName: string;
   PhoneNumber: string;
   Email: string;
