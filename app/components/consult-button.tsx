@@ -6,7 +6,7 @@ const ConsultButton = () => {
   <div className="w-full h-70 relative overflow-hidden">
     <img
       className="w-full h-full object-cover object-[50%_85%]"
-      src="/images/bg-prefooter.jpg"
+      src="/images/bg-prefooter.webp"
       alt="" />
     <button
       onClick={() => WorkInProgress()}
