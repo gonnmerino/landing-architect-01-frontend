@@ -35,7 +35,7 @@ export default function VerticalCarousel({
           el: ".carousel-pagination",
           clickable: true,
           bulletClass:
-            "swiper-pagination-bullet !w-[10px] !h-[10px] translate-x-2 -translate-y-8 md:translate-y-0 md:!w-[12px] md:!h-[12px] md:!-translate-x-8 !rounded-none !bg-[#3f2b1d] !opacity-30",
+            "swiper-pagination-bullet !cursor-default !w-[10px] !h-[10px] translate-x-2 -translate-y-8 md:translate-y-0 md:!w-[12px] md:!h-[12px] md:!-translate-x-8 !rounded-none !bg-[#3f2b1d] !opacity-30",
           bulletActiveClass: "!opacity-70 !bg-[#3f2b1d]",
         }}
         modules={[Pagination, Autoplay, Mousewheel, Scrollbar]}
