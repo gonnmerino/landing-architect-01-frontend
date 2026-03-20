@@ -18,7 +18,8 @@ export default function VerticalCarousel({
     <div className="relative h-full w-full">
 
       {/* TODO: Hacer que las bullets de la paginacion aparezca en la izquierda y ocultar en mobile. */}
-      <div className="carousel-pagination absolute -left-10 md:-left-12 lg:-left-10 top-1/2 -translate-y-1/2 flex flex-col gap-2 z-30" />
+      <div className="carousel-pagination absolute top-1/2 flex flex-col gap-2 z-30"
+      style={{ right: 'unset' }} />
 
       <Swiper
         direction="vertical"
@@ -34,8 +35,8 @@ export default function VerticalCarousel({
           el: ".carousel-pagination",
           clickable: true,
           bulletClass:
-            "swiper-pagination-bullet !w-[10px] !h-[10px] !rounded-none !bg-[#c6a48c] !opacity-40",
-          bulletActiveClass: "!opacity-100 !bg-[#b46a3c]",
+            "swiper-pagination-bullet !w-[10px] !h-[10px] translate-x-2 -translate-y-8 md:translate-y-0 md:!w-[12px] md:!h-[12px] md:!-translate-x-8 !rounded-none !bg-[#3f2b1d] !opacity-30",
+          bulletActiveClass: "!opacity-70 !bg-[#3f2b1d]",
         }}
         modules={[Pagination, Autoplay, Mousewheel, Scrollbar]}
         className="h-full w-full"
