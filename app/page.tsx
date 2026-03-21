@@ -6,7 +6,6 @@ import { ServicesType } from "./types/services";
 import Services from "./components/services";
 import Process from "./components/process";
 import { getCarousel, getFavorite, getServices } from "./libs/strapi/projects";
-import { WorkInProgress } from "./components/navbar";
 import ViewProjectsButton from "./components/viewproject-btn";
 import ConsultButton from "./components/consult-button";
 

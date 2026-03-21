@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { Menu, X } from 'lucide-react';
 import { ContactData } from "../types/contact";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 interface NavBarProps {
   contact: ContactData;
@@ -15,7 +16,8 @@ export function WorkInProgress() {
 
 const Navbar = ({ contact }: NavBarProps) => {
   const [isOpen, setIsOpen] = useState(false);
-
+  const pathname = usePathname();
+  const isSolid = pathname.startsWith("/projects");
   // Bloquea el scroll cuando el panel está abierto
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "";
@@ -26,7 +28,7 @@ const Navbar = ({ contact }: NavBarProps) => {
 
   return (
     <>
-      <nav className="w-full absolute top-0 left-0 z-50">
+      <nav className={`w-full top-0 left-0 z-50 ${isSolid ? "fixed bg-[#f4f1ed]" : "absolute"}`}>
         <div className="max-w-7xl mx-auto pt-8 pb-4 px-12 2xl:px-0 flex items-start border-b border-black/10">
 
           {/* Logo */}

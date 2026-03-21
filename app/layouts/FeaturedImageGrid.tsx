@@ -46,14 +46,14 @@ function ImageBlock({
     <img
       src={item.imageUrl}
       alt={item.alt || ""}
-      className="w-full h-full object-cover"
+      className="w-full h-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] group-hover:scale-[1.02]"
     />
   );
 
   return (
     <>
-      <div className={`w-full overflow-hidden ${ratio}`}>
-        {item.href ? <a href={item.href}>{img}</a> : img}
+      <div className={`w-full overflow-hidden group ${ratio}`}>
+        {item.href ? <a href={item.href} className="block w-full h-full">{img}</a> : img}
       </div>
 
       {item.content && (
