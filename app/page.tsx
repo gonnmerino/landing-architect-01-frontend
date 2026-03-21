@@ -64,55 +64,62 @@ export default async function Home() {
 
       <div className="-z-10 fixed inset-0 bg-[#b46a3c]/10" />
 
-      <main className="min-h-screen pb-8 md:pb-0 flex flex-col items-center px-6 sm:px-8 md:px-12 xl:px-20 pt-24 md:pt-28 bg-[#f4f1ed/40] overflow-x-hidden">
+      <main className="min-h-screen pb-16 md:pb-0 flex flex-col items-center px-6 sm:px-8 md:px-12 xl:px-20 pt-28 md:pt-32 overflow-x-hidden">
 
         {/* HERO */}
-        <div className="relative w-full max-w-400 mx-auto">
+        <div className="relative w-full max-w-7xl mx-auto">
 
-          {/* LAYER DECORATIVO (NO GENERA OVERFLOW) */}
+          {/* LAYER DECORATIVO */}
           <div className="pointer-events-none absolute inset-0 overflow-hidden">
-
-            {/* PATAGONIA HORIZONTAL */}
-            <span className="hidden lg:block absolute top-0 left-0 text-[180px] font-serif text-[#b46a3c]/5 select-none whitespace-nowrap">
+            <span className="hidden lg:block absolute top-0 left-0 text-[160px] font-serif text-[#b46a3c]/[0.04] select-none whitespace-nowrap tracking-widest">
               PATAGONIA
             </span>
-
-            {/* PATAGONIA VERTICAL */}
-            <span className="hidden lg:block absolute -bottom-40 -right-32 -rotate-90 text-[180px] font-serif text-[#b46a3c]/5 select-none whitespace-nowrap">
+            <span className="hidden lg:block absolute -bottom-40 -right-32 -rotate-90 text-[160px] font-serif text-[#b46a3c]/[0.04] select-none whitespace-nowrap tracking-widest">
               PATAGONIA
             </span>
-
           </div>
 
           {/* GRID */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-14 md:gap-20 w-full relative">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-14 xl:gap-20 w-full relative items-center">
 
             {/* IZQUIERDA */}
-            <div className="flex flex-col justify-center max-w-xl relative z-10">
-              <h2 className="font-serif mt-8 select-none sm:mt-5 md:mt-0 text-2xl sm:text-4xl md:text-5xl xl:text-7xl leading-[1.15] md:leading-[1.05] tracking-tight">
-                <span className="block">Arquitectura</span>
-                <span className="block">contemporánea</span>
-                <span className="block">en diálogo</span>
-                <span className="block">con el paisaje.</span>
+            <div className="flex flex-col max-w-lg relative z-10">
+
+              {/* Etiqueta superior */}
+              <span className="text-xs tracking-[0.2em] uppercase text-[#b46a3c]/70 font-light mb-6 md:mb-8">
+                Estudio de arquitectura
+              </span>
+
+              {/* Título con rotate sutil + italic */}
+              <h2
+                className="font-serif select-none italic leading-[1.08] tracking-tight text-[#2a1f15]"
+                style={{ transform: "", transformOrigin: "left center" }}
+              >
+                <span className="block text-[3rem] sm:text-5xl md:text-5xl xl:text-[5.0rem]">Arquitectura</span>
+                <span className="block text-[3rem] sm:text-5xl md:text-5xl xl:text-[5.0rem]">contemporánea</span>
+                <span className="block text-[3rem] sm:text-5xl md:text-5xl xl:text-[5.0rem] text-[#b46a3c]">en diálogo</span>
+                <span className="block text-[3rem] sm:text-5xl md:text-5xl xl:text-[5.0rem]">con el paisaje.</span>
               </h2>
 
-              <p className="mt-6 md:mt-10 text-sm md:text-lg font-light text-neutral-700 leading-relaxed max-w-md">
-                Diseñamos espacios que integran materia, luz y entorno,
-                creando experiencias habitables con identidad y carácter.
-              </p>
-              <ViewProjectsButton />
+              <div className="mt-10 md:mt-12 flex items-start gap-4">
+                <div className="w-px h-12 bg-[#b46a3c]/30 mt-1 shrink-0" />
+                <p className="text-sm md:text-base font-light text-neutral-600 leading-relaxed">
+                  Diseñamos espacios que integran materia, luz y entorno,
+                  creando experiencias habitables con identidad y carácter.
+                </p>
+              </div>
+
+              <div className="mt-10 md:mt-12">
+                <ViewProjectsButton />
+              </div>
             </div>
 
             {/* DERECHA */}
-            <div
-              className="h-[45vh] md:mt-8 sm:h-[55vh] md:h-[70vh] xl:h-[75vh] relative z-10">
-
+            <div className="h-[45vh] sm:h-[55vh] md:h-[70vh] xl:h-[78vh] relative z-10">
               <div className="relative h-full w-full">
-
-                <div className={`absolute inset-0 transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] "opacity-100 scale-100"}`}>
+                <div className="absolute inset-0 transition-all duration-700 ease-[cubic-bezier(0.4,0,0.2,1)]">
                   <VerticalCarousel slides={slides} />
                 </div>
-
               </div>
             </div>
 
@@ -120,23 +127,33 @@ export default async function Home() {
         </div>
 
         {/* FAVORITOS */}
-        <section className="mt-8 list-none pb-10 px-5 md:px-12 lg:px-24">
-          <div className="mb-12 md:mb-8">
-            <div className="flex items-center gap-6">
-              <span className="h-px w-12 bg-[#b46a3c]/40" />
-              <h3 className="font-serif text-2xl sm:text-3xl md:text-4xl tracking-tight text-[#3e2b1c]">
-                Proyectos destacados
-              </h3>
+        <section className="w-full max-w-7xl mx-auto mt-32 md:mt-12 pb-10">
+          <div className="mb-14 md:mb-16">
+            <div className="flex items-center gap-4 mb-4">
+              <span className="h-px w-8 bg-[#b46a3c]/50" />
+              <span className="text-xs tracking-[0.2em] uppercase text-[#b46a3c]/70 font-light">
+                Selección
+              </span>
             </div>
-            <p className="mt-4 text-sm md:text-lg text-neutral-600 max-w-md font-light">
-              Una selección de obras recientes que exploran la relación entre materia, luz y territorio.
+            <h3 className="font-serif text-3xl sm:text-4xl md:text-5xl tracking-tight text-[#2a1f15]">
+              Proyectos destacados
+            </h3>
+            <p className="mt-3 text-sm md:text-base text-neutral-500 max-w-sm font-light leading-relaxed">
+              Obras recientes que exploran la relación entre materia, luz y territorio.
             </p>
           </div>
 
           <FavoriteGrid projects={favorites} />
         </section>
-        <Services services={services} />
-        <Process />
+
+        <div className="w-full max-w-7xl mx-auto md:mt-12">
+          <Services services={services} />
+        </div>
+
+        <div className="w-full max-w-7xl mx-auto mt-15 md:mt-28 md:pb-32">
+          <Process />
+        </div>
+
       </main>
       <ConsultButton />
     </>

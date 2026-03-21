@@ -17,9 +17,8 @@ export default function VerticalCarousel({
   return (
     <div className="relative h-full w-full">
 
-      {/* TODO: Hacer que las bullets de la paginacion aparezca en la izquierda y ocultar en mobile. */}
       <div className="carousel-pagination absolute top-1/2 flex flex-col gap-2 z-30"
-      style={{ right: 'unset' }} />
+        style={{ right: 'unset' }} />
 
       <Swiper
         direction="vertical"
@@ -52,16 +51,20 @@ export default function VerticalCarousel({
                   className="h-full w-full object-cover"
                 />
               </Link>
-              <div className="absolute bottom-0 left-0 md:bottom-10 md:left-15 max-w-xl sm:max-w-xs bg-[#f4f1ed]/90 backdrop-blur-md p-3 md:p-6 border border-[#b46a3c]/20">
-                <p className="md:text-base text-xs font-light text-black leading-relaxed">
+              <div className="absolute bottom-0 left-0 md:bottom-10 md:left-10 max-w-xl sm:max-w-xs bg-[#f4f1ed]/70 backdrop-blur-md p-3 md:p-6">
+                <p className="md:text-base text-xs text-neutral-700 leading-relaxed">
                   {slide.ImageDescription}
                 </p>
 
                 {slide.DateOfProject && (
                   <p className="md:text-base text-xs text-neutral-600 mt-2 tracking-wide">
-                    {new Date(slide.DateOfProject).getFullYear()}
+                    {new Date(slide.DateOfProject).getFullYear()}, {slide.slug
+                      .split('-')
+                      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                      .join(' ')}.
                   </p>
                 )}
+
               </div>
             </div>
           </SwiperSlide>

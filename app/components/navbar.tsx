@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Menu, X } from 'lucide-react';
 import { ContactData } from "../types/contact";
 import Link from "next/link";
@@ -16,10 +16,18 @@ export function WorkInProgress() {
 const Navbar = ({ contact }: NavBarProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
+  // Bloquea el scroll cuando el panel está abierto
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [isOpen]);
+
+  const navItems = ["Proyectos", "Otros Clientes", "Contacto"];
+
   return (
     <>
       <nav className="w-full absolute top-0 left-0 z-50">
-        <div className="max-w-400 mx-auto px-6 md:px-12 xl:px-20 pt-8 pb-4 flex items-start border-b border-black/10">
+        <div className="max-w-7xl mx-auto pt-8 pb-4 px-6 xl:pl-0 md:px-12 xl:px-20 flex items-start border-b border-black/10">
 
           {/* Logo */}
           <div className="font-serif leading-tight">
@@ -33,56 +41,38 @@ const Navbar = ({ contact }: NavBarProps) => {
             </Link>
           </div>
 
-          {/* Desktop Menu */}
-          <ul className="ml-auto hidden md:flex items-center gap-14 text-lg font-light tracking-wide">
-
-            <li onClick={() => WorkInProgress()} className="relative cursor-pointer transition-all ease-in-out
-              before:transition-[width] before:ease-in-out before:duration-700 
-              before:absolute before:bg-[#b46a3c] before:origin-center 
-              before:h-px before:w-0 hover:before:w-[50%] 
-              before:bottom-0 before:left-[50%] 
-              after:transition-[width] after:ease-in-out after:duration-700 
-              after:absolute after:bg-[#b46a3c] after:origin-center 
-              after:h-px after:w-0 hover:after:w-[50%] 
-              after:bottom-0 after:right-[50%]">
-              Proyectos
-            </li>
-
-            <li onClick={() => WorkInProgress()} className="relative cursor-pointer transition-all ease-in-out
-              before:transition-[width] before:ease-in-out before:duration-700 
-              before:absolute before:bg-[#b46a3c] before:origin-center 
-              before:h-px before:w-0 hover:before:w-[50%] 
-              before:bottom-0 before:left-[50%] 
-              after:transition-[width] after:ease-in-out after:duration-700 
-              after:absolute after:bg-[#b46a3c] after:origin-center 
-              after:h-px after:w-0 hover:after:w-[50%] 
-              after:bottom-0 after:right-[50%]">
-              Otros Clientes
-            </li>
-
-            <li onClick={() => WorkInProgress()} className="relative cursor-pointer transition-all ease-in-out
-              before:transition-[width] before:ease-in-out before:duration-700 
-              before:absolute before:bg-[#b46a3c] before:origin-center 
-              before:h-px before:w-0 hover:before:w-[50%] 
-              before:bottom-0 before:left-[50%] 
-              after:transition-[width] after:ease-in-out after:duration-700 
-              after:absolute after:bg-[#b46a3c] after:origin-center 
-              after:h-px after:w-0 hover:after:w-[50%] 
-              after:bottom-0 after:right-[50%]">
-              Contacto
-            </li>
-
-            <li onClick={() => WorkInProgress()} className="ml-6 select-none text-sm tracking-widest border border-[#b46a3c]/60 text-[#b46a3c] px-6 py-2 hover:bg-[#b46a3c] hover:text-white transition duration-300 cursor-pointer">
+          {/* Desktop Menu — solo desde lg */}
+          <ul className="ml-auto hidden lg:flex items-center gap-14 text-lg font-light tracking-wide">
+            {navItems.map((item) => (
+              <li
+                key={item}
+                onClick={() => WorkInProgress()}
+                className="relative cursor-pointer transition-all ease-in-out
+                  before:transition-[width] before:ease-in-out before:duration-700
+                  before:absolute before:bg-[#b46a3c] before:origin-center
+                  before:h-px before:w-0 hover:before:w-[50%]
+                  before:bottom-0 before:left-[50%]
+                  after:transition-[width] after:ease-in-out after:duration-700
+                  after:absolute after:bg-[#b46a3c] after:origin-center
+                  after:h-px after:w-0 hover:after:w-[50%]
+                  after:bottom-0 after:right-[50%]"
+              >
+                {item}
+              </li>
+            ))}
+            <li
+              onClick={() => WorkInProgress()}
+              className="select-none text-sm tracking-widest border border-[#b46a3c]/60 text-[#b46a3c] px-6 py-2 hover:bg-[#b46a3c] hover:text-white transition duration-300 cursor-pointer"
+            >
               {contact.PhoneNumber}
             </li>
-
           </ul>
 
-          {/* Mobile Icon */}
+          {/* Hamburguesa — hasta lg */}
           <button
-            onClick={() => WorkInProgress()}
-            //onClick={() => setIsOpen(true)}
-            className="ml-auto md:hidden text-[#b46a3c]"
+            onClick={() => setIsOpen(true)}
+            className="ml-auto lg:hidden text-[#b46a3c] p-1"
+            aria-label="Abrir menú"
           >
             <Menu size={28} strokeWidth={1.5} />
           </button>
@@ -90,53 +80,78 @@ const Navbar = ({ contact }: NavBarProps) => {
         </div>
       </nav>
 
-      {/* Mobile Panel */}
+      {/* Overlay oscuro */}
       <div
-        className={`fixed inset-0 z-100 transition-all duration-500 ${isOpen ? "translate-x-0" : "translate-x-full"
-          }`}
+        onClick={() => setIsOpen(false)}
+        className={`fixed inset-0 z-40 bg-black/30 backdrop-blur-sm transition-opacity duration-500 lg:hidden ${
+          isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+        }`}
+      />
+
+      {/* Panel mobile */}
+      <div
+        className={`fixed top-0 right-0 h-full w-[min(420px,100vw)] z-50 transition-transform duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] lg:hidden ${
+          isOpen ? "translate-x-0" : "translate-x-full"
+        }`}
       >
-        {/* Background */}
+        {/* Fondo con textura sutil */}
         <div className="absolute inset-0 bg-[#f4f1ed]" />
+        <div className="absolute inset-0 opacity-[0.03] bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPjxyZWN0IHdpZHRoPSI0IiBoZWlnaHQ9IjQiIGZpbGw9IndoaXRlIi8+PHBhdGggZD0iTTAgMEw0IDRNNCAwTDAgNCIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9Ii41Ii8+PC9zdmc+')]" />
 
-        {/* Content */}
-        <div className="relative h-full flex flex-col px-8 pt-10">
+        {/* Línea decorativa izquierda */}
+        <div className="absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-[#b46a3c]/30 to-transparent" />
 
-          {/* Close button */}
-          <button
-            onClick={() => setIsOpen(false)}
-            className="self-end text-[#b46a3c]"
-          >
-            <X size={28} strokeWidth={1.5} />
-          </button>
+        {/* Contenido */}
+        <div className="relative h-full flex flex-col px-10 pt-10 pb-12">
 
-          <div className="mt-20 flex flex-col gap-10 text-3xl font-serif">
-
-            <a
+          {/* Header del panel */}
+          <div className="flex items-center justify-between mb-16">
+            <span className="font-serif text-sm text-[#b46a3c]/60 tracking-widest uppercase">
+              Menú
+            </span>
+            <button
               onClick={() => setIsOpen(false)}
-              className="border-b border-[#b46a3c]/30 pb-4"
+              className="text-[#3e2b1c] hover:text-[#b46a3c] transition-colors duration-200"
+              aria-label="Cerrar menú"
             >
-              Proyectos
-            </a>
-
-            <a
-              onClick={() => setIsOpen(false)}
-              className="border-b border-[#b46a3c]/30 pb-4"
-            >
-              Otros Clientes
-            </a>
-
-            <a
-              onClick={() => setIsOpen(false)}
-              className="border-b border-[#b46a3c]/30 pb-4"
-            >
-              Contacto
-            </a>
-
+              <X size={24} strokeWidth={1.5} />
+            </button>
           </div>
 
-          {/* Phone bottom */}
-          <div className="mt-auto mb-12 text-sm tracking-widest text-[#b46a3c] border border-[#b46a3c]/50 px-6 py-3 w-fit">
-            {contact.PhoneNumber}
+          {/* Links */}
+          <nav className="flex flex-col">
+            {navItems.map((item, i) => (
+              <button
+                key={item}
+                onClick={() => { WorkInProgress(); setIsOpen(false); }}
+                className="group flex items-center justify-between py-6 border-b border-[#3e2b1c]/10 text-left"
+                style={{ animationDelay: `${i * 60}ms` }}
+              >
+                <span className="font-serif text-3xl text-[#3e2b1c] group-hover:text-[#b46a3c] transition-colors duration-300">
+                  {item}
+                </span>
+                <span className="text-[#b46a3c]/0 group-hover:text-[#b46a3c]/60 transition-all duration-300 translate-x-0 group-hover:translate-x-1 text-xl">
+                  →
+                </span>
+              </button>
+            ))}
+          </nav>
+
+          {/* Footer del panel */}
+          <div className="mt-auto flex flex-col gap-6">
+            {/* Separador decorativo */}
+            <div className="flex items-center gap-4">
+              <span className="h-px flex-1 bg-[#b46a3c]/20" />
+              <span className="text-[#b46a3c]/40 text-xs tracking-widest uppercase font-light">Contacto</span>
+              <span className="h-px flex-1 bg-[#b46a3c]/20" />
+            </div>
+
+            <button
+              onClick={() => WorkInProgress()}
+              className="self-start text-sm tracking-widest text-[#b46a3c] border border-[#b46a3c]/50 px-6 py-3 hover:bg-[#b46a3c] hover:text-white transition-all duration-300"
+            >
+              {contact.PhoneNumber}
+            </button>
           </div>
 
         </div>
