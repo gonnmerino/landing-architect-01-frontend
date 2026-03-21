@@ -27,17 +27,19 @@ const Navbar = ({ contact }: NavBarProps) => {
   return (
     <>
       <nav className="w-full absolute top-0 left-0 z-50">
-        <div className="max-w-7xl mx-auto pt-8 pb-4 px-12 lg:px-0 flex items-start border-b border-black/10">
+        <div className="max-w-7xl mx-auto pt-8 pb-4 px-12 2xl:px-0 flex items-start border-b border-black/10">
 
           {/* Logo */}
-          <div className="font-serif leading-tight">
+          <div className="font-serif leading-none">
             <Link href={`../`}>
-              <h1 className="text-2xl md:text-3xl">
-                Architect
-                <span className="block text-base md:text-xl font-light">
+              <div className="flex flex-col gap-2">
+                <h1 className="text-2xl md:text-[2.5rem] tracking-tight font-normal text-[#2a1f15]">
+                  Architect
+                </h1>
+                <span className="text-[0.6rem] tracking-[0.28em] uppercase font-light text-[#b46a3c]/70 not-italic">
                   Estudio de muestra
                 </span>
-              </h1>
+              </div>
             </Link>
           </div>
 
@@ -71,7 +73,7 @@ const Navbar = ({ contact }: NavBarProps) => {
           {/* Hamburguesa — hasta lg */}
           <button
             onClick={() => setIsOpen(true)}
-            className="ml-auto lg:hidden text-[#b46a3c] p-1"
+            className="ml-auto lg:hidden cursor-pointer text-[#b46a3c] p-1"
             aria-label="Abrir menú"
           >
             <Menu size={28} strokeWidth={1.5} />
@@ -83,16 +85,14 @@ const Navbar = ({ contact }: NavBarProps) => {
       {/* Overlay oscuro */}
       <div
         onClick={() => setIsOpen(false)}
-        className={`fixed inset-0 z-40 bg-black/30 backdrop-blur-sm transition-opacity duration-500 lg:hidden ${
-          isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
-        }`}
+        className={`fixed inset-0 z-40 bg-black/30 backdrop-blur-sm transition-opacity duration-500 lg:hidden ${isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+          }`}
       />
 
       {/* Panel mobile */}
       <div
-        className={`fixed top-0 right-0 h-full w-[min(420px,100vw)] z-50 transition-transform duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] lg:hidden ${
-          isOpen ? "translate-x-0" : "translate-x-full"
-        }`}
+        className={`fixed top-0 right-0 h-full w-[min(420px,100vw)] z-50 transition-transform duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] lg:hidden ${isOpen ? "translate-x-0" : "translate-x-full"
+          }`}
       >
         {/* Fondo con textura sutil */}
         <div className="absolute inset-0 bg-[#f4f1ed]" />
@@ -111,7 +111,7 @@ const Navbar = ({ contact }: NavBarProps) => {
             </span>
             <button
               onClick={() => setIsOpen(false)}
-              className="text-[#3e2b1c] hover:text-[#b46a3c] transition-colors duration-200"
+              className="text-[#3e2b1c] cursor-pointer hover:text-[#b46a3c] transition-colors duration-200"
               aria-label="Cerrar menú"
             >
               <X size={24} strokeWidth={1.5} />
@@ -124,7 +124,7 @@ const Navbar = ({ contact }: NavBarProps) => {
               <button
                 key={item}
                 onClick={() => { WorkInProgress(); setIsOpen(false); }}
-                className="group flex items-center justify-between py-6 border-b border-[#3e2b1c]/10 text-left"
+                className="group flex items-center justify-between py-6 border-b  cursor-pointer border-[#3e2b1c]/10 text-left"
                 style={{ animationDelay: `${i * 60}ms` }}
               >
                 <span className="font-serif text-3xl text-[#3e2b1c] group-hover:text-[#b46a3c] transition-colors duration-300">
@@ -148,7 +148,7 @@ const Navbar = ({ contact }: NavBarProps) => {
 
             <button
               onClick={() => WorkInProgress()}
-              className="self-start text-sm tracking-widest text-[#b46a3c] border border-[#b46a3c]/50 px-6 py-3 hover:bg-[#b46a3c] hover:text-white transition-all duration-300"
+              className="self-start text-sm tracking-widest cursor-pointer text-[#b46a3c] border border-[#b46a3c]/50 px-6 py-3 hover:bg-[#b46a3c] hover:text-white transition-all duration-300"
             >
               {contact.PhoneNumber}
             </button>

@@ -62,9 +62,7 @@ export default async function Home() {
         className="-z-20 fixed inset-0 w-full h-full object-cover scale-105 blur-[1px] opacity-85"
       />
 
-      <div className="-z-10 fixed inset-0 bg-[#b46a3c]/10" />
-
-      <main className="min-h-screen pb-16 md:pb-0 flex flex-col items-center px-6 sm:px-8 md:px-12 xl:px-20 pt-28 md:pt-32 overflow-x-hidden">
+      <main className="min-h-screen pb-16 md:pb-0 flex flex-col items-center px-6 sm:px-8 md:px-12 xl:px-20 pt-28 md:pt-34 overflow-x-hidden bg-[#ede8e3]/40">
 
         {/* HERO */}
         <div className="relative w-full max-w-7xl mx-auto">
@@ -93,12 +91,15 @@ export default async function Home() {
               {/* Título con rotate sutil + italic */}
               <h2
                 className="font-serif select-none italic leading-[1.08] tracking-tight text-[#2a1f15]"
-                style={{ transform: "", transformOrigin: "left center" }}
-              >
-                <span className="block text-[3rem] sm:text-5xl md:text-5xl xl:text-[5.0rem]">Arquitectura</span>
-                <span className="block text-[3rem] sm:text-5xl md:text-5xl xl:text-[5.0rem]">contemporánea</span>
-                <span className="block text-[3rem] sm:text-5xl md:text-5xl xl:text-[5.0rem] text-[#b46a3c]">en diálogo</span>
-                <span className="block text-[3rem] sm:text-5xl md:text-5xl xl:text-[5.0rem]">con el paisaje.</span>
+                style={{
+                  fontSize: "clamp(1.8rem, 5.5vw, 5rem)",
+                  transformOrigin: "left center"
+                }}>
+                  
+                <span className="block">Arquitectura</span>
+                <span className="block">contemporánea</span>
+                <span className="block text-[#b46a3c]">en diálogo</span>
+                <span className="block">con el paisaje.</span>
               </h2>
 
               <div className="mt-10 md:mt-12 flex items-start gap-4">
@@ -127,7 +128,7 @@ export default async function Home() {
         </div>
 
         {/* FAVORITOS */}
-        <section className="w-full max-w-7xl mx-auto mt-32 md:mt-12 pb-10">
+        <section className="w-full max-w-7xl mx-auto mt-15 md:mt-12 pb-10">
           <div className="mb-14 md:mb-16">
             <div className="flex items-center gap-4 mb-4">
               <span className="h-px w-8 bg-[#b46a3c]/50" />
