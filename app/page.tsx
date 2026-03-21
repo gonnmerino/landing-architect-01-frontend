@@ -53,14 +53,6 @@ export default async function Home() {
     }))
   return (
     <>
-      <video
-        autoPlay
-        muted
-        playsInline
-        src="/videos/bg1.mp4"
-        className="-z-20 fixed inset-0 w-full h-full object-cover scale-105 blur-[1px] opacity-85"
-      />
-
       <main className="min-h-screen pb-16 md:pb-0 flex flex-col items-center px-6 sm:px-8 md:px-12 xl:px-20 pt-28 md:pt-34 overflow-x-hidden bg-[#ede8e3]/40">
 
         {/* HERO */}
@@ -83,9 +75,12 @@ export default async function Home() {
             <div className="flex flex-col max-w-lg relative z-10">
 
               {/* Etiqueta superior */}
-              <span className="text-xs tracking-[0.2em] uppercase text-[#b46a3c]/70 mt-3 md:mt-0 font-light mb-6 md:mb-8">
-                Estudio de arquitectura
-              </span>
+              <div className="flex flex-row">
+                <span className="h-px w-8 bg-[#b46a3c]/50 mt-5 md:mt-2 mr-4 "/>
+                <span className="text-xs tracking-[0.2em] uppercase text-[#b46a3c]/70 mt-3 md:mt-0 font-light mb-6 md:mb-8">
+                  Estudio de arquitectura
+                </span>
+              </div>
 
               {/* Título con rotate sutil + italic */}
               <h2
@@ -94,7 +89,7 @@ export default async function Home() {
                   fontSize: "clamp(1.8rem, 5.5vw, 5rem)",
                   transformOrigin: "left center"
                 }}>
-                  
+
                 <span className="block">Arquitectura</span>
                 <span className="block">contemporánea</span>
                 <span className="block text-[#b46a3c]">en diálogo</span>

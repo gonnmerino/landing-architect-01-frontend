@@ -1,5 +1,5 @@
 import { ContactData } from "@/app/types/contact";
-import { StrapiFetch } from "./fether";
+import { StrapiFetch } from "./fetcher";
 
 export async function getContact(): Promise<ContactData> {
 const result = await StrapiFetch<{data: ContactData[]}>(

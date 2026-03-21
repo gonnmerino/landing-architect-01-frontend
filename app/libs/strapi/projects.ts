@@ -1,4 +1,9 @@
-import { StrapiFetch } from "./fether";
+import { Project } from "@/app/types/project";
+import { StrapiFetch } from "./fetcher";
+
+type StrapiResponse<T> = {
+  data: T[];
+};
 
 export async function getCarousel() {
   const result = await StrapiFetch<{ data: any[] }>(
@@ -20,5 +25,17 @@ export async function getServices() {
     "/api/services?fields[0]=serviceName&fields[1]=Description&pagination[limit]=3&filters[isActive][$eq]=true"
   )
 
+  return result.data;
+}
+export async function getClientOpinions() {
+  const result = await StrapiFetch<{ data: any[] }>(
+    "/api/client-opinions?populate=*"
+  );
+  return result.data;
+}
+export async function getProjects() {
+  const result = await StrapiFetch<StrapiResponse<Project>>(
+    "/api/projects?fields=ProjectName,Description,slug,DateOfProject&populate[Image][populate]=Image"
+  );
   return result.data;
 }
