@@ -27,7 +27,7 @@ const Navbar = ({ contact }: NavBarProps) => {
   return (
     <>
       <nav className="w-full absolute top-0 left-0 z-50">
-        <div className="max-w-7xl mx-auto pt-8 pb-4 px-6 xl:pl-0 md:px-12 xl:px-20 flex items-start border-b border-black/10">
+        <div className="max-w-7xl mx-auto pt-8 pb-4 px-12 lg:px-0 flex items-start border-b border-black/10">
 
           {/* Logo */}
           <div className="font-serif leading-tight">

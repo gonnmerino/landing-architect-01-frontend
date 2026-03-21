@@ -86,7 +86,7 @@ export default async function Home() {
             <div className="flex flex-col max-w-lg relative z-10">
 
               {/* Etiqueta superior */}
-              <span className="text-xs tracking-[0.2em] uppercase text-[#b46a3c]/70 font-light mb-6 md:mb-8">
+              <span className="text-xs tracking-[0.2em] uppercase text-[#b46a3c]/70 mt-3 md:mt-0 font-light mb-6 md:mb-8">
                 Estudio de arquitectura
               </span>
 
